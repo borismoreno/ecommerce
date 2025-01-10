@@ -6,7 +6,9 @@ const { rows } = await turso.execute("SELECT * FROM Clients");
 ---
 
 <Layout>
-    <ul>
-        {rows.map((row) => <li>{row.name}</li>)}
-    </ul>
+    <div class="container p-10">
+        <ul>
+            {rows.map((row) => <p class="text-3xl">{row.name}</p>)}
+        </ul>
+    </div>
 </Layout>
