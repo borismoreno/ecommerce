@@ -1,7 +1,13 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
+import { turso } from "../turso";
+
+const { rows } = await turso.execute("SELECT * FROM Clients");
 ---
 
 <MainLayout title="Home">
     <h1 class="text-3xl">Home Page</h1>
+    <ul>
+        {rows.map((client) => <li>{client.name}</li>)}
+    </ul>
 </MainLayout>
