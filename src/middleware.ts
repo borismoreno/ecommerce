@@ -22,7 +22,7 @@ export const onRequest = defineMiddleware(({ url, request, locals, redirect }, n
     }
 
     if (!isLoggedIn && privateRoutes.includes(url.pathname)) {
-        return redirect('/login');
+        return redirect('/');
     }
 
     if (isLoggedIn && publicRoutes.includes(url.pathname)) {
