@@ -26,6 +26,8 @@ export const loginUser = defineAction({
         try {
             const user = await signInWithEmailAndPassword(firebase.auth, email, password);
 
+            console.log(user);
+
             return { ok: true };
         } catch (error) {
             const firebaseError = error as AuthError;
