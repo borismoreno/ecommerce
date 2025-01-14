@@ -1,16 +1,17 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
 import { turso } from "../turso";
+import { firebase } from "@/firebase/config";
 
-const { user, isLoggedIn } = Astro.locals;
-
+const isLoggedIn = !!firebase.auth.currentUser;
+const user = firebase.auth.currentUser;
 const { rows } = await turso.execute("SELECT * FROM Clients");
 ---
 
 <MainLayout title="Home">
     <h1 class="text-3xl">Home Page</h1>
     <h1 class="text-3xl">
-        {user ? `Display Name: ${user.name}` : "No user"}
+        {user ? `Display Name: ${user.displayName}` : "No user"}
     </h1>
     <p>{`Is logged in: ${isLoggedIn}`}</p>
     <ul>
