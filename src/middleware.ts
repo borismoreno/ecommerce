@@ -11,8 +11,6 @@ export const onRequest = defineMiddleware(({ url, request, locals, redirect }, n
     const user = firebase.auth.currentUser;
     locals.isLoggedIn = isLoggedIn;
 
-    console.log({ user, isLoggedIn })
-
     if (user) {
         locals.user = {
             avatar: user.photoURL ?? '',
@@ -23,7 +21,7 @@ export const onRequest = defineMiddleware(({ url, request, locals, redirect }, n
     }
 
     if (!isLoggedIn && privateRoutes.includes(url.pathname)) {
-        return redirect('/');
+        return redirect(`/?isLoggedIn=${isLoggedIn}${user !== null ? `&user=${user.displayName}` : "&user=notallowed"}`);
     }
 
     if (isLoggedIn && publicRoutes.includes(url.pathname)) {
