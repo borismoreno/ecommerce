@@ -7,6 +7,7 @@ const publicRoutes = ["/login", "/register"]
 
 // `context` and `next` are automatically typed
 export const onRequest = defineMiddleware(async ({ url, request, locals, redirect }, next) => {
+    await firebase.auth.currentUser?.reload();
     const isLoggedIn = !!firebase.auth.currentUser;
     const user = firebase.auth.currentUser;
     locals.isLoggedIn = isLoggedIn;
