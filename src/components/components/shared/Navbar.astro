@@ -72,8 +72,10 @@ const { isLoggedIn } = Astro.locals;
     import { actions } from "astro:actions";
 
     const logoutElement = document.querySelector("#logout") as HTMLLIElement;
-    logoutElement.addEventListener("click", () => {
-        actions.logout();
-        window.location.href = "/";
-    });
+    if (logoutElement) {
+        logoutElement.addEventListener("click", () => {
+            actions.logout();
+            window.location.href = "/";
+        });
+    }
 </script>
